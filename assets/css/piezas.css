@@ -1,0 +1,105 @@
+/* Piezas para redes: lienzos de tamaño fijo (px en los posts y el estado, mm en el volante).
+   Comparten las variables de marca con la landing, pero no su layout. */
+@import "../vendor/modern-normalize.css";
+@import "tokens.css";
+
+html, body { margin: 0; background: #777; }
+body { font-family: var(--font); color: var(--ink); -webkit-font-smoothing: antialiased; }
+h1, p, ul, ol { margin: 0; padding: 0; list-style: none; }
+img { display: block; }
+
+.pieza { position: relative; overflow: hidden; display: flex; flex-direction: column; }
+.pieza--post { width: 1080px; height: 1350px; padding: 72px 72px 0; }
+.pieza--estado { width: 1080px; height: 1920px; padding: 240px 80px 260px; }
+.pieza--volante { width: 105mm; height: 148mm; padding: 7mm 7mm 6mm; }
+
+/* Piezas compartidas */
+.titulo { font-weight: 800; letter-spacing: -0.05em; line-height: 0.88; font-size: 200px; display: flex; flex-direction: column; }
+.titulo .a { color: var(--accent); }
+.encabezado { font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; font-size: 96px; }
+.bajada { font-size: 44px; line-height: 1.2; letter-spacing: -0.02em; }
+
+.credencial { display: flex; gap: 40px; align-items: center; padding: 28px; background: var(--paper); }
+.credencial img { width: 300px; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 20%; flex: none; }
+.credencial div { display: flex; flex-direction: column; gap: 12px; font-size: 32px; font-weight: 600; line-height: 1.2; }
+.credencial strong { font-size: 56px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+
+.chips { display: flex; flex-wrap: wrap; gap: 14px; }
+.chips li { padding: 14px 24px; background: var(--accent-deep); color: var(--accent-ink); font-size: 38px; font-weight: 600; }
+
+.pie {
+  margin: auto -72px 0;
+  height: 150px;
+  padding: 0 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.pie-wa { font-size: 58px; font-weight: 800; letter-spacing: -0.03em; white-space: nowrap; }
+.pie-zona { font-size: 30px; font-weight: 600; text-align: right; line-height: 1.15; white-space: nowrap; }
+
+/* 1. Presentación */
+.d-presentacion { background: var(--mint); gap: 40px; }
+.d-presentacion .titulo { font-size: 184px; }
+.d-presentacion .credencial img { width: 250px; }
+.d-presentacion .chips li { font-size: 34px; }
+
+/* 2. Prestaciones */
+.d-prestaciones { background: var(--paper); gap: 36px; }
+.d-prestaciones .encabezado { font-size: 80px; }
+.poster li { display: flex; align-items: baseline; justify-content: space-between; gap: 32px; }
+.poster .nombre { font-size: 116px; font-weight: 800; letter-spacing: -0.05em; line-height: 1.02; }
+.poster .detalle { font-size: 30px; text-align: right; max-width: 12em; line-height: 1.2; }
+
+/* 3. Cómo es una visita */
+.d-visita { background: var(--pink); gap: 48px; }
+.pasos { display: flex; flex-direction: column; }
+.pasos li { padding: 32px 40px; background: var(--tone); color: var(--tone-ink); display: flex; flex-direction: column; gap: 10px; }
+.pasos strong { font-size: 60px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+.pasos span { font-size: 30px; line-height: 1.3; }
+
+/* 4. Verificá mi matrícula */
+.d-matricula { background: var(--accent); color: var(--accent-ink); gap: 48px; }
+.d-matricula .titulo { font-size: 172px; color: var(--accent-ink); }
+.d-matricula .credencial { color: var(--ink); }
+.d-matricula .como { font-size: 40px; line-height: 1.25; }
+.d-matricula .pie { background: var(--accent-deep); }
+
+/* 5. Posoperatorio */
+.d-posoperatorio { background: var(--pink); gap: 40px; }
+.d-posoperatorio .titulo { font-size: 180px; color: var(--ink); }
+.d-posoperatorio .bajada { max-width: 14em; }
+.d-posoperatorio .objeto { position: absolute; right: 72px; top: 470px; width: 300px; mix-blend-mode: multiply; }
+.d-posoperatorio .credencial { margin-top: auto; }
+.d-posoperatorio .credencial img { width: 220px; }
+.d-posoperatorio .pie { margin-top: 48px; }
+
+/* 6. Estado de WhatsApp */
+.d-estado { background: var(--mint); gap: 36px; }
+.d-estado .titulo { font-size: 180px; }
+.d-estado .foto { width: 100%; height: 560px; object-fit: cover; object-position: 50% 22%; }
+.d-estado .chips li { font-size: 34px; }
+.d-estado .nombre { font-size: 38px; font-weight: 600; line-height: 1.3; }
+.d-estado .wa { margin-top: auto; font-size: 44px; line-height: 1.1; }
+.d-estado .wa strong { font-size: 110px; font-weight: 800; letter-spacing: -0.04em; color: var(--accent); }
+
+/* 7. Volante A6 */
+.d-volante { background: var(--mint); gap: 3.2mm; }
+.d-volante .titulo { font-size: 17mm; }
+.d-volante .bajada { font-size: 4.6mm; font-weight: 600; }
+.d-volante .credencial { gap: 3.5mm; padding: 2.5mm; }
+.d-volante .credencial img { width: 18mm; }
+.d-volante .credencial div { gap: 0.8mm; font-size: 3mm; }
+.d-volante .credencial strong { font-size: 4.6mm; }
+.d-volante .lista { display: flex; flex-direction: column; gap: 1.1mm; font-size: 3.2mm; line-height: 1.25; }
+.d-volante .lista strong { font-weight: 800; }
+.d-volante .contacto { margin-top: auto; display: flex; gap: 3.5mm; align-items: center; background: var(--paper); padding: 2.5mm; }
+.d-volante .qr { width: 24mm; height: 24mm; image-rendering: pixelated; flex: none; }
+.d-volante .contacto p { font-size: 3.2mm; line-height: 1.3; }
+.d-volante .contacto strong { font-size: 6.4mm; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); }
+.d-volante .legal { font-size: 2.6mm; font-weight: 600; }
+
+@page { size: 105mm 148mm; margin: 0; }
+@media print { html, body { background: none; } }

@@ -1,0 +1,3 @@
+# CSS propio sobre Open Props, sin framework
+
+La landing y las piezas usan CSS escrito a mano sobre modern-normalize 3.0.1 y las variables de Open Props 1.7.23 (escalas de espacios, tipografía y curvas), copiados en `assets/vendor/` y empaquetados con `css.Build` de Hugo. Es lo que hacen dos tercios de los temas de Hugo (escaneo de los 619 del catálogo, nov-2026), y la dirección visual (capítulos de color, credencial, armador de WhatsApp) es casi toda composición propia, así que un framework iba a aportar poco y estorbar en las piezas de tamaño fijo. Se evaluaron Pico (archivado en oct-2026), su fork Blades (activo pero con 2 mantenedores) y Bulma (muchas clases, look genérico); comparativa en el Workbench: `notes/2026-11-25-css-frameworks.md`.

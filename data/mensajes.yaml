@@ -1,0 +1,53 @@
+# Textos del kit (/kit/). {whatsapp} y {web} se completan con data/perfil.yaml y params.urlPublica.
+# Los ___ los completa Melina antes de usar el mensaje.
+
+listos:
+  - titulo: Precios
+    texto: |
+      ¡Hola! Gracias por escribirme. Los valores dependen de la prestación y de la distancia:
+      • Inyectable: $___
+      • Curación: $___
+      • Retiro de puntos: $___
+      • Control de presión o glucemia: $___
+      Contame qué necesitás y en qué barrio estás, y te confirmo día y horario.
+  - titulo: Cómo es una visita
+    texto: |
+      Te cuento cómo trabajo: me mandás una foto de la receta o la indicación del médico, coordinamos día y horario, te confirmo el valor y voy a tu casa. Llevo jeringas, agujas, gasas y guantes; el medicamento lo comprás vos en la farmacia.
+  - titulo: Qué tener preparado
+    texto: |
+      Para la visita tené a mano la receta o la indicación del médico y el medicamento ya comprado. Si se puede, un lugar con buena luz y una mesa limpia para apoyar las cosas.
+  - titulo: Urgencias
+    texto: |
+      Si es una urgencia, por favor llamá al 107 o andá a la guardia más cercana. Yo hago visitas programadas y no llego a tiempo para una emergencia.
+  - titulo: No puedo en ese horario
+    texto: |
+      ¡Gracias por escribirme! En ese horario no llego. Te puedo ofrecer ___. Si te sirve, lo dejamos agendado.
+  - titulo: Pedir una reseña en Google
+    texto: |
+      ¡Gracias por confiar en mí! Si te quedaste conforme, ¿me ayudarías dejando una reseña en Google? A otras familias les sirve para encontrarme: ___
+
+google:
+  intro: El perfil lo creás vos con tu cuenta de Google (business.google.com). Google suele pedir verificarlo con un video corto. Como atendés en la casa de cada paciente, elegí "negocio con zona de servicio" y la dirección queda oculta.
+  campos:
+    - campo: Nombre
+      texto: Melina Gigena
+      nota: Solo su nombre. Google no permite agregar palabras clave al nombre ("enfermera a domicilio" va en la descripción).
+    - campo: Categoría
+      texto: ""
+      nota: Buscá "enfermer" o "atención domiciliaria" y elegí la que más se parezca. Se puede cambiar después.
+    - campo: Zona de servicio
+      texto: Villa María, Villa Nueva
+    - campo: Teléfono
+      texto: "{whatsapp}"
+    - campo: Sitio web
+      texto: "{web-google}"
+    - campo: Descripción
+      texto: |
+        Soy Melina Gigena, enfermera profesional matriculada en Córdoba. Hago visitas a domicilio en Villa María y Villa Nueva: inyectables intramusculares y subcutáneos, curaciones de heridas y posoperatorios, retiro de puntos y grapas, y controles de presión, saturación y glucemia. Todo con indicación médica. Llevo los descartables; el medicamento lo tiene el paciente. Coordinamos por WhatsApp y te paso el valor antes de ir. No atiendo urgencias: para eso está el 107.
+
+grupos:
+  - Publicá desde tu perfil personal, que es lo que la mayoría de los grupos permite. Antes de publicar, leé las reglas del grupo; algunos aceptan avisos solo ciertos días.
+  - No publiques lo mismo en todos los grupos el mismo día. Rotá pieza y variante de texto, y repetí en un mismo grupo cada una o dos semanas como mucho.
+  - Grupos que sirven: compra-venta y vecinos de Villa María y Villa Nueva, grupos de barrios, de jubilados y de mamás de la zona.
+  - Respondé rápido. Si alguien comenta "info" o "precio", contestá en el comentario que le escribís por privado y mandale el mensaje listo de precios.
+  - Nunca publiques fotos ni datos de pacientes, ni siquiera de espaldas o con permiso informal.

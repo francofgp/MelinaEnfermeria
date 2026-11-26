@@ -1,0 +1,79 @@
+# Única fuente de los datos de Melina: la leen la landing, las piezas y el kit.
+# Cada clave de `pendientes` se muestra resaltada en amarillo y bloquea el build de producción.
+# Al confirmar un dato con Melina, corregilo acá y sacalo de la lista.
+pendientes:
+  - matricula
+  - horarios
+  - pagos
+  - comprobante
+  - duracion
+  - prestacionesEV
+
+nombre: Melina Gigena
+nombreCompleto: Melina Inés Gigena
+nombreCorto: Melina
+titulo: Enfermera Profesional
+matricula: "00000"
+
+whatsapp:
+  numero: "5493537302877"
+  visible: "3537 30-2877"
+
+# Lo que se agrega al final de cada mensaje de WhatsApp según de dónde llega la persona.
+# La landing toma el canal de `?desde=<canal>` (sin parámetro: web).
+canales:
+  web: Te escribo desde la web.
+  facebook: Vi tu publicación en Facebook.
+  volante: Vi tu volante.
+  google: Te encontré en Google.
+  estado: Vi tu estado de WhatsApp.
+
+zona:
+  - Villa María
+  - Villa Nueva
+horarios: Lun a sáb · 8 a 20 h
+duracion: 15 a 30 min
+pagos: Efectivo o transferencia.
+comprobante: "A confirmar: si entrega comprobante para pedir reintegro."
+
+# `mensaje` es como aparece en el mensaje armado ("necesito un inyectable…").
+prestaciones:
+  - nombre: Inyectables
+    detalle: intramusculares y subcutáneos, con receta
+    mensaje: un inyectable
+  - nombre: Curaciones
+    detalle: heridas y posoperatorios
+    mensaje: una curación
+  - nombre: Puntos
+    detalle: retiro de puntos y grapas
+    mensaje: retirar puntos
+  - nombre: Controles
+    detalle: presión, saturación y glucemia
+    mensaje: un control de presión o glucemia
+  - nombre: Sueros
+    detalle: medicación endovenosa indicada por tu médico
+    mensaje: medicación endovenosa
+    pendiente: prestacionesEV
+  - nombre: Por horas
+    detalle: "acompañamiento por turnos: a consultar"
+    mensaje: cuidado por horas
+
+formacion:
+  - lugar: Instituto Superior Dr. Ramón Carrillo
+    que: Título de Enfermera Profesional
+  - lugar: Universidad Favaloro
+    que: Curso de electrocardiografía básica, 2024
+
+experiencia:
+  - lugar: Clínica Marañón
+    que: Internación clínica y posoperatoria, 2021–2026
+  - lugar: Centro de tratamiento de Villa María
+    que: Hoy
+  - lugar: Visitas a domicilio
+    que: Desde 2020
+
+verificacion:
+  ministerio: https://matriculacionessalud.cba.gov.ar/
+  refeps: https://www.argentina.gob.ar/salud/buscador-nacional-de-profesionales-de-la-salud
+
+urgencias: "107"

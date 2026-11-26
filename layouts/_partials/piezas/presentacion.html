@@ -1,0 +1,8 @@
+{{- $p := hugo.Data.perfil -}}
+<h1 class="titulo"><span class="a">{{ $p.nombreCorto }},</span> <span class="b">enfermera</span></h1>
+{{ partial "piezas/credencial.html" . }}
+<p class="bajada">Voy a tu casa en {{ delimit $p.zona " y " }}, siempre con indicación médica.</p>
+<ul class="chips">
+  {{- range first 4 $p.prestaciones }}<li>{{ .nombre }}</li>{{ end }}
+</ul>
+{{ partial "piezas/pie.html" . }}

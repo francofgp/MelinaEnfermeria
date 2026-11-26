@@ -1,0 +1,15 @@
+{{- /* Foto de assets/img en WebP + JPG a dos anchos, sin agrandar nunca el original.
+  Uso: {{ partial "img.html" (dict "src" "melina-retrato.jpg" "w" 800 "alt" "…" "class" "…" "sizes" "…" "eager" true) }} */ -}}
+{{- $img := resources.Get (printf "img/%s" .src) -}}
+{{- if not $img }}{{ errorf "img.html: no existe assets/img/%s" .src }}{{ end -}}
+{{- $w := math.Min (.w | default 800) $img.Width | int -}}
+{{- $half := div $w 2 -}}
+{{- $webp1 := $img.Resize (printf "%dx webp" $half) -}}
+{{- $webp2 := $img.Resize (printf "%dx webp" $w) -}}
+{{- $jpg := $img.Resize (printf "%dx jpg" $w) -}}
+<picture>
+  <source type="image/webp" srcset="{{ $webp1.RelPermalink }} {{ $half }}w, {{ $webp2.RelPermalink }} {{ $w }}w" sizes="{{ .sizes | default "100vw" }}">
+  <img src="{{ $jpg.RelPermalink }}" width="{{ $jpg.Width }}" height="{{ $jpg.Height }}" alt="{{ .alt }}"
+    {{- with .class }} class="{{ . }}"{{ end }}
+    {{- if not .eager }} loading="lazy"{{ end }} decoding="async">
+</picture>

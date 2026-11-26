@@ -1,0 +1,60 @@
+/* /kit/: herramienta para el celular de Melina. Simple y legible, con los colores de la marca. */
+@import "../vendor/modern-normalize.css";
+@import "../vendor/open-props-sizes.min.css";
+@import "../vendor/open-props-easings.min.css";
+@import "tokens.css";
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--step-body);
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+}
+h1, h2, h3, p, ul { margin: 0; }
+img { display: block; max-width: 100%; height: auto; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+
+.kit { max-width: 760px; margin: 0 auto; padding: var(--size-7) var(--size-4) var(--size-10); display: flex; flex-direction: column; gap: var(--size-9); }
+.kit h1 { font-size: var(--step-head); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+.kit h2 { font-size: clamp(1.75rem, 1.4rem + 1.5vw, 2.5rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: var(--size-4); }
+.kit h3 { font-size: var(--step-lead); font-weight: 800; letter-spacing: -0.02em; }
+.kit section, .kit-intro { display: flex; flex-direction: column; gap: var(--size-4); }
+
+.kit-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+.kit-nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 var(--size-3); background: var(--mint); font-weight: 600; text-decoration: none; }
+.aviso { padding: var(--size-3); background: #fff1a6; font-weight: 600; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 var(--size-4);
+  border: 0;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 200ms var(--ease-out-3), transform 160ms var(--ease-out-3);
+}
+.btn:hover { background: var(--accent-deep); }
+.btn:active { transform: scale(0.97); }
+.btn-small { min-height: 44px; font-size: var(--step-small); }
+.btn-light { background: var(--mint); color: var(--accent-deep); }
+.btn.is-ok { background: var(--ink); }
+
+.pieza-kit { display: flex; flex-direction: column; gap: var(--size-4); padding: var(--size-5); background: var(--paper); }
+.pieza-kit img { width: 100%; max-width: 420px; background: var(--surface); }
+.descargas { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.copiable { display: flex; flex-direction: column; gap: var(--size-2); align-items: flex-start; padding: var(--size-4); background: var(--surface); }
+.copiable-titulo { font-weight: 600; }
+.copiable-texto { margin: 0; width: 100%; white-space: pre-wrap; overflow-wrap: anywhere; font-family: var(--font); font-size: var(--step-body); line-height: 1.45; }
+.campo { display: flex; flex-direction: column; gap: var(--size-1); }
+.nota { font-size: var(--step-small); }
+.consejos { padding-left: 1.2em; display: flex; flex-direction: column; gap: var(--size-3); }

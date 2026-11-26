@@ -1,0 +1,8 @@
+{{- $p := hugo.Data.perfil -}}
+<h1 class="encabezado">Lo que hago en tu casa</h1>
+<ul class="poster">
+  {{- range $p.prestaciones }}
+  <li><span class="nombre">{{ .nombre }}</span><span class="detalle">{{ if .pendiente }}{{ partial "pendiente.html" (dict "clave" .pendiente "texto" .detalle) }}{{ else }}{{ .detalle }}{{ end }}</span></li>
+  {{- end }}
+</ul>
+{{ partial "piezas/pie.html" . }}

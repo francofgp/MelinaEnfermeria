@@ -1,0 +1,11 @@
+{{- $p := hugo.Data.perfil -}}
+{{- $foto := (resources.Get "img/melina-retrato.jpg").Resize "680x webp" -}}
+{{- /* Estado de WhatsApp: arriba y abajo quedan libres ~220 px, donde la app dibuja el nombre y la barra de respuesta. */ -}}
+<h1 class="titulo"><span class="a">{{ $p.nombreCorto }},</span> <span class="b">enfermera</span></h1>
+<img class="foto" src="{{ $foto.RelPermalink }}" alt="">
+<p class="nombre">{{ $p.nombreCompleto }} · {{ $p.titulo }}<br>Matrícula provincial N.º {{ partial "pendiente.html" (dict "clave" "matricula" "texto" $p.matricula) }}</p>
+<ul class="chips">
+  {{- range first 4 $p.prestaciones }}<li>{{ .nombre }}</li>{{ end }}
+</ul>
+<p class="bajada">A domicilio en {{ delimit $p.zona " y " }}</p>
+<p class="wa">Escribime al<br><strong>{{ $p.whatsapp.visible }}</strong></p>

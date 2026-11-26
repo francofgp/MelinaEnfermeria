@@ -1,0 +1,58 @@
+{{- $p := hugo.Data.perfil -}}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ $p.nombre }}{{ end }}</title>
+<meta name="description" content="{{ .Params.description | default site.Params.description }}">
+{{- if .Params.noindex }}
+<meta name="robots" content="noindex">
+{{- end }}
+<link rel="canonical" href="{{ .Permalink }}">
+<meta name="theme-color" content="#c3edce">
+
+{{- $font := resources.Get "fonts/schibsted-grotesk-latin-wght-normal.woff2" }}
+<link rel="preload" href="{{ $font.RelPermalink }}" as="font" type="font/woff2" crossorigin>
+<style>
+  @font-face {
+    font-family: "Schibsted Grotesk";
+    src: url("{{ $font.RelPermalink }}") format("woff2");
+    font-weight: 400 900;
+    font-display: swap;
+  }
+</style>
+{{- $css := resources.Get (printf "css/%s.css" (.Params.css | default "landing")) | css.Build (dict "minify" hugo.IsProduction) | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{- with .IsHome }}
+{{- $og := "kit/presentacion.png" }}
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="{{ site.Title }}">
+<meta property="og:description" content="{{ site.Params.description }}">
+<meta property="og:url" content="{{ site.Home.Permalink }}">
+{{- if fileExists (printf "static/%s" $og) }}
+<meta property="og:image" content="{{ $og | absURL }}">
+<meta property="og:image:width" content="1080">
+<meta property="og:image:height" content="1350">
+{{- end }}
+{{- $areas := slice }}
+{{- range $p.zona }}{{ $areas = $areas | append (dict "@type" "City" "name" .) }}{{ end }}
+<script type="application/ld+json">
+{{ dict
+  "@context" "https://schema.org"
+  "@type" "Person"
+  "name" $p.nombreCompleto
+  "jobTitle" $p.titulo
+  "url" site.Home.Permalink
+  "telephone" (printf "+%s" $p.whatsapp.numero)
+  "address" (dict "@type" "PostalAddress" "addressLocality" (index $p.zona 0) "addressRegion" "Córdoba" "addressCountry" "AR")
+  "makesOffer" (dict
+    "@type" "Offer"
+    "itemOffered" (dict
+      "@type" "Service"
+      "name" "Enfermería a domicilio"
+      "areaServed" $areas
+    )
+  )
+  | jsonify | safeJS }}
+</script>
+{{- end }}

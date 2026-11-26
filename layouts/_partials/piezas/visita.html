@@ -1,0 +1,10 @@
+<h1 class="encabezado">Cómo es una visita</h1>
+<ol class="pasos">
+  {{- range $i, $paso := hugo.Data.visita }}
+  <li style="--tone:var(--step-{{ add $i 1 }}); --tone-ink:var(--{{ cond (lt $i 2) "bg" "ink" }})">
+    <strong>{{ .nombre }}</strong>
+    <span>{{ .texto }}</span>
+  </li>
+  {{- end }}
+</ol>
+{{ partial "piezas/pie.html" . }}

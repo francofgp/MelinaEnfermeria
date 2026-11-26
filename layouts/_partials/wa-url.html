@@ -1,0 +1,8 @@
+{{- /* Devuelve el link de WhatsApp con el mensaje precargado.
+  Uso: {{ partial "wa-url.html" (dict "canal" "volante") }} o (dict "mensaje" "Hola Melina, …").
+  Sin mensaje arma el saludo genérico del canal (web por defecto). */ -}}
+{{- $p := hugo.Data.perfil -}}
+{{- $canal := .canal | default "web" -}}
+{{- $mensaje := .mensaje | default (printf "Hola %s. %s" $p.nombreCorto (index $p.canales $canal)) -}}
+{{- /* urlquery codifica los espacios como "+": se pasan a %20 para que WhatsApp los muestre bien. */ -}}
+{{- return printf "https://wa.me/%s?text=%s" $p.whatsapp.numero (replace (urlquery $mensaje) "+" "%20") -}}

@@ -1,0 +1,165 @@
+{{ define "main" }}
+{{- $p := hugo.Data.perfil -}}
+{{- $wa := partial "wa-url.html" dict -}}
+{{- $mat := partial "pendiente.html" (dict "clave" "matricula" "texto" $p.matricula) -}}
+<header class="bar">
+  <a class="bar-name" href="#inicio">{{ $p.nombre }}</a>
+  <a class="btn btn-small" href="{{ $wa }}" data-wa>WhatsApp</a>
+</header>
+
+<main>
+  <section id="inicio" class="chapter hero">
+    <h1 class="display hero-title"><span class="hero-a">{{ $p.nombreCorto }},</span> <span class="hero-b">enfermera</span></h1>
+
+    <div class="hero-foot">
+      <figure class="credential reveal">
+        {{ partial "img.html" (dict "src" "melina-retrato.jpg" "w" 680 "sizes" "(min-width: 761px) 30vw, 120px" "alt" (printf "Retrato de %s sonriendo, con anteojos" $p.nombre) "eager" true) }}
+        <figcaption>
+          <strong class="credential-name">{{ $p.nombreCompleto }}</strong>
+          <span class="credential-role">{{ $p.titulo }} · Matrícula provincial N.º {{ $mat }}</span>
+          <a href="{{ $p.verificacion.ministerio }}" rel="noopener" target="_blank">Verificar en el Ministerio de Salud</a>
+        </figcaption>
+      </figure>
+
+      <div class="hero-copy reveal">
+        <p class="lead">Voy a tu casa en {{ delimit $p.zona ", " " y " }}: inyectables, curaciones, retiro de puntos y controles, siempre con indicación médica.</p>
+        <a class="btn" href="{{ $wa }}" data-wa>Escribime por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="prestaciones" class="chapter list">
+    <h2 class="head reveal">Lo que hago en tu casa</h2>
+    <ul class="poster">
+      {{- range $p.prestaciones }}
+      <li class="reveal"><span class="display">{{ .nombre }}</span><span class="detail">{{ if .pendiente }}{{ partial "pendiente.html" (dict "clave" .pendiente "texto" .detalle) }}{{ else }}{{ .detalle }}{{ end }}</span></li>
+      {{- end }}
+    </ul>
+    {{ partial "img.html" (dict "src" "tensiometro.jpg" "w" 800 "sizes" "(min-width: 1025px) 22vw, 50vw" "alt" "Tensiómetro aneroide con su manguito" "class" "list-object reveal") }}
+  </section>
+
+  <section id="como" class="chapter how">
+    <div class="how-intro">
+      <h2 class="head reveal">Cómo es una visita</h2>
+      <p class="reveal">Cuatro pasos, sin vueltas. Antes de ir ya sabés qué voy a hacer, cuánto cuesta y a qué hora llego.</p>
+    </div>
+    <div class="stages reveal">
+      {{- range $i, $paso := hugo.Data.visita }}
+      <details name="paso"{{ if eq $i 0 }} open{{ end }} style="--tone:var(--step-{{ add $i 1 }}); --tone-ink:var(--{{ cond (lt $i 2) "bg" "ink" }})">
+        <summary>{{ .nombre }}</summary>
+        <p>{{ .texto }}</p>
+        {{- if eq $i 2 }}
+        {{ partial "img.html" (dict "src" "gasa.jpg" "w" 800 "sizes" "(min-width: 1025px) 25vw, 50vw" "alt" "Rollo de venda de gasa") }}
+        {{- end }}
+      </details>
+      {{- end }}
+    </div>
+  </section>
+
+  <section id="sobre-mi" class="chapter about-wrap">
+    <div class="about">
+      <h2 class="head about-title reveal">Cinco años cuidando gente</h2>
+      <div class="about-text">
+        <div class="reveal">
+          <h3>Dónde aprendí</h3>
+          <p>Me recibí de Enfermera Profesional en el Instituto Superior Dr. Ramón Carrillo. En 2024 hice el curso de electrocardiografía básica de la Universidad Favaloro.</p>
+        </div>
+        <div class="reveal">
+          <h3>Dónde trabajé</h3>
+          <p>Cinco años en internación clínica y posoperatoria en la Clínica Marañón. Hoy trabajo en un centro de tratamiento de Villa María y hago visitas a domicilio en mis horarios libres.</p>
+        </div>
+        <a class="btn btn-light reveal" href="{{ $wa }}" data-wa>Escribime</a>
+      </div>
+      {{ partial "img.html" (dict "src" "melina-retrato.jpg" "w" 680 "sizes" "(min-width: 761px) 36vw, 86vw" "alt" $p.nombre "class" "about-photo") }}
+    </div>
+  </section>
+
+  <section id="matricula" class="chapter proof">
+    <div class="tiles">
+      <div class="tile tile-head reveal"><h2 class="head">Verificá todo</h2><p>Antes de abrirle la puerta a alguien, chequeá que esté matriculado. Estos son mis datos.</p></div>
+      <a class="tile reveal" href="{{ $p.verificacion.ministerio }}" target="_blank" rel="noopener"><strong>Ministerio de Salud de Córdoba</strong><span>Consulta de matrícula, buscando "{{ index (split $p.nombre " ") 1 }}"</span></a>
+      <a class="tile reveal" href="{{ $p.verificacion.refeps }}" target="_blank" rel="noopener"><strong>REFEPS</strong><span>Buscador nacional de profesionales de la salud</span></a>
+      <div class="tile reveal"><strong>Matrícula N.º {{ $mat }}</strong><span>{{ $p.titulo }}, Córdoba</span></div>
+      {{- range $p.formacion }}
+      <div class="tile reveal"><strong>{{ .lugar }}</strong><span>{{ .que }}</span></div>
+      {{- end }}
+      {{- with index $p.experiencia 0 }}
+      <div class="tile reveal"><strong>{{ .lugar }}</strong><span>{{ .que }}</span></div>
+      {{- end }}
+    </div>
+  </section>
+
+  <section id="zona" class="chapter contact">
+    <h2 class="head reveal">Dónde y cuándo voy</h2>
+    <ul class="rows">
+      <li class="reveal"><span>{{ index $p.zona 0 }}</span>{{ partial "img.html" (dict "src" "costanera-villa-maria.jpg" "w" 960 "sizes" "(min-width: 761px) 22vw, 100vw" "alt" "Costanera de Villa María con el puente de arco sobre el río") }}</li>
+      <li class="reveal"><span>{{ index $p.zona 1 }}</span>{{ partial "img.html" (dict "src" "plaza-villa-nueva.jpg" "w" 960 "sizes" "(min-width: 761px) 22vw, 100vw" "alt" "Plaza Capitán de los Andes, en Villa Nueva") }}</li>
+      <li class="reveal"><span>{{ partial "pendiente.html" (dict "clave" "horarios" "texto" $p.horarios) }}</span></li>
+      <li class="reveal"><a href="{{ $wa }}" data-wa>{{ $p.whatsapp.visible }}</a></li>
+    </ul>
+  </section>
+
+  <section id="preguntas" class="chapter faq">
+    <h2 class="head faq-title reveal">Preguntas</h2>
+    <div class="faq-list">
+      {{- range hugo.Data.preguntas }}
+      <details name="faq" class="reveal">
+        <summary>{{ .pregunta }}</summary>
+        <p>{{ .respuesta }}{{ with .agregado }} {{ partial "pendiente.html" (dict "clave" . "texto" (index $p .)) }}{{ end }}</p>
+      </details>
+      {{- end }}
+    </div>
+  </section>
+
+  <section id="escribime" class="chapter cta">
+    <h2 class="head reveal">Armá tu mensaje</h2>
+    <form class="builder reveal" data-builder>
+      <fieldset>
+        <legend>Qué necesitás <span class="legend-hint">(podés marcar varias)</span></legend>
+        {{- range $i, $e := $p.prestaciones }}
+        <label><input type="checkbox" name="que" value="{{ .mensaje }}"{{ if eq $i 0 }} checked{{ end }}><span>{{ .nombre }}</span></label>
+        {{- end }}
+        <label><input type="checkbox" name="que" value="otra cosa"><span>Otra cosa</span></label>
+      </fieldset>
+      <fieldset>
+        <legend>Dónde</legend>
+        {{- range $i, $z := $p.zona }}
+        <label><input type="radio" name="donde" value="{{ . }}"{{ if eq $i 0 }} checked{{ end }}><span>{{ . }}</span></label>
+        {{- end }}
+      </fieldset>
+      <fieldset>
+        <legend>Cuándo</legend>
+        <label><input type="radio" name="cuando" value="hoy"><span>Hoy</span></label>
+        <label><input type="radio" name="cuando" value="mañana" checked><span>Mañana</span></label>
+        <label><input type="radio" name="cuando" value="esta semana"><span>Esta semana</span></label>
+      </fieldset>
+      <p class="preview" aria-live="polite" data-preview>Hola {{ $p.nombreCorto }}. {{ $p.canales.web }}</p>
+    </form>
+    <a class="cta-word display" href="{{ $wa }}" data-wa data-wa-builder>WhatsApp<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 34 34 14M18 14h16v16" fill="none" stroke="currentColor" stroke-width="4"/></svg></a>
+  </section>
+</main>
+
+<footer class="footer">
+  <p class="footer-name" aria-hidden="true">{{ $p.nombre }}</p>
+  <div class="footer-row">
+    <ul class="footer-places">
+      <li><a href="{{ $wa }}" data-wa>WhatsApp {{ $p.whatsapp.visible }}</a></li>
+      <li>{{ delimit $p.zona " · " }}</li>
+    </ul>
+    <ul class="footer-links">
+      <li><a href="{{ $p.verificacion.ministerio }}" target="_blank" rel="noopener">Verificar matrícula</a></li>
+      <li><a href="#preguntas">Preguntas</a></li>
+      <li><a href="#inicio">Volver arriba</a></li>
+    </ul>
+  </div>
+  <p class="footer-legal">{{ $p.titulo }} · Matrícula provincial N.º {{ $mat }} · Urgencias: {{ $p.urgencias }}</p>
+  <p class="footer-credits">Fotos de la zona:
+    {{- range $i, $c := hugo.Data.creditos }}{{ if $i }};{{ end }} <a href="{{ .url }}" rel="noopener">"{{ .titulo }}"</a> de {{ .autor }}, {{ .licencia }}{{ end }}; vía Wikimedia Commons.</p>
+</footer>
+{{ end }}
+
+{{ define "scripts" }}
+{{- $p := hugo.Data.perfil -}}
+{{- $js := resources.Get "js/landing.js" | js.Build (dict "minify" hugo.IsProduction "params" (dict "numero" $p.whatsapp.numero "nombre" $p.nombreCorto "canales" $p.canales)) | fingerprint -}}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ end }}

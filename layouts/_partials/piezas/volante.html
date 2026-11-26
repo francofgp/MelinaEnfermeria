@@ -1,0 +1,22 @@
+{{- $p := hugo.Data.perfil -}}
+{{- $url := printf "%s?desde=volante" site.Params.urlPublica -}}
+{{- $qr := images.QR $url (dict "level" "medium" "scale" 6) -}}
+{{- $foto := (resources.Get "img/melina-retrato.jpg").Resize "400x webp" -}}
+<h1 class="titulo"><span class="a">{{ $p.nombreCorto }},</span> <span class="b">enfermera</span></h1>
+<p class="bajada">A domicilio en {{ delimit $p.zona " y " }}</p>
+<div class="credencial">
+  <img src="{{ $foto.RelPermalink }}" alt="">
+  <div>
+    <strong>{{ $p.nombreCompleto }}</strong>
+    <span>{{ $p.titulo }}</span>
+    <span>Matrícula provincial N.º {{ partial "pendiente.html" (dict "clave" "matricula" "texto" $p.matricula) }}</span>
+  </div>
+</div>
+<ul class="lista">
+  {{- range first 5 $p.prestaciones }}<li><strong>{{ .nombre }}</strong> {{ if .pendiente }}{{ partial "pendiente.html" (dict "clave" .pendiente "texto" .detalle) }}{{ else }}{{ .detalle }}{{ end }}</li>{{ end }}
+</ul>
+<div class="contacto">
+  <img class="qr" src="{{ $qr.RelPermalink }}" alt="Código QR a la página de Melina">
+  <p>Escaneá el código o escribime por WhatsApp<br><strong>{{ $p.whatsapp.visible }}</strong></p>
+</div>
+<p class="legal">Con indicación médica · No atiendo urgencias: {{ $p.urgencias }}</p>

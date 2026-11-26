@@ -1,0 +1,6 @@
+{{- $p := hugo.Data.perfil -}}
+<h1 class="titulo">Verificá mi matrícula</h1>
+<p class="bajada">Antes de abrirle la puerta a alguien, chequeá que esté matriculado.</p>
+{{ partial "piezas/credencial.html" . }}
+<p class="como">Buscá "{{ index (split $p.nombre " ") 1 }}" en <strong>matriculacionessalud.cba.gov.ar</strong></p>
+{{ partial "piezas/pie.html" . }}

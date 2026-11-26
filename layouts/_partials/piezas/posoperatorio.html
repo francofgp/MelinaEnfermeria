@@ -1,0 +1,6 @@
+{{- $gasa := (resources.Get "img/gasa.jpg").Resize "800x webp" -}}
+<h1 class="titulo">¿Te operaron?</h1>
+<p class="bajada">Curaciones y retiro de puntos en tu casa, con la indicación de tu médico.</p>
+<img class="objeto" src="{{ $gasa.RelPermalink }}" alt="">
+{{ partial "piezas/credencial.html" . }}
+{{ partial "piezas/pie.html" . }}

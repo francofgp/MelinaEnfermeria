@@ -1,0 +1,5 @@
+# `hugo server` y el render de piezas usan este entorno: los datos pendientes se ven resaltados en amarillo.
+baseURL = "http://localhost:1313/"
+
+[params]
+permitirPendientes = true

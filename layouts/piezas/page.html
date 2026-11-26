@@ -1,0 +1,25 @@
+{{- /* Una pieza al tamaño exacto de su formato. No usa baseof: es una página suelta que se captura a PNG. */ -}}
+{{- partial "guarda-pendientes.html" . -}}
+{{- $font := resources.Get "fonts/schibsted-grotesk-latin-wght-normal.woff2" -}}
+{{- $css := resources.Get "css/piezas.css" | css.Build (dict "minify" hugo.IsProduction) | fingerprint -}}
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <title>{{ .Title }} · pieza</title>
+  <style>
+    @font-face {
+      font-family: "Schibsted Grotesk";
+      src: url("{{ $font.RelPermalink }}") format("woff2");
+      font-weight: 400 900;
+    }
+  </style>
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}">
+</head>
+<body>
+  <article class="pieza pieza--{{ .Params.formato }} d-{{ .Params.diseno }}" data-formato="{{ .Params.formato }}">
+    {{ partial (printf "piezas/%s.html" .Params.diseno) . }}
+  </article>
+</body>
+</html>

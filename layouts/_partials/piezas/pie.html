@@ -1,0 +1,6 @@
+{{- /* Franja final de los posts: el WhatsApp y la zona, que es lo que la gente busca en la imagen. */ -}}
+{{- $p := hugo.Data.perfil -}}
+<footer class="pie">
+  <span class="pie-wa">WhatsApp {{ $p.whatsapp.visible }}</span>
+  <span class="pie-zona">{{ delimit $p.zona "<br>y " | safeHTML }}</span>
+</footer>

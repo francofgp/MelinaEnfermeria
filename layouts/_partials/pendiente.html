@@ -1,0 +1,7 @@
+{{- /* Muestra un dato; si su clave está en perfil.pendientes, lo resalta como "a confirmar".
+  Uso: {{ partial "pendiente.html" (dict "clave" "matricula" "texto" hugo.Data.perfil.matricula) }} */ -}}
+{{- if in hugo.Data.perfil.pendientes .clave -}}
+<mark class="pendiente" title="Dato a confirmar con Melina">{{ .texto }}</mark>
+{{- else -}}
+{{ .texto }}
+{{- end -}}

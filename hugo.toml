@@ -1,0 +1,25 @@
+baseURL = "https://francofgp.github.io/MelinaEnfermeria/"
+locale = "es-AR"
+defaultContentLanguage = "es"
+title = "Melina Gigena · Enfermera a domicilio en Villa María"
+disableKinds = ["taxonomy", "term", "rss"]
+enableRobotsTXT = true
+
+[outputs]
+home = ["html"]
+section = ["html"]
+page = ["html"]
+
+[params]
+description = "Enfermera profesional matriculada. Inyectables, curaciones, retiro de puntos y controles a domicilio en Villa María y Villa Nueva. Consultas por WhatsApp."
+# En producción el build falla si data/perfil.yaml todavía tiene datos pendientes de confirmar.
+# Para un deploy de prueba: HUGO_PARAMS_PERMITIRPENDIENTES=true hugo
+permitirPendientes = false
+# URL pública fija: la usan el QR del volante y los textos de publicación, también al renderizar en local.
+urlPublica = "https://francofgp.github.io/MelinaEnfermeria/"
+
+[imaging]
+quality = 82
+
+[build]
+noJSConfigInAssets = true

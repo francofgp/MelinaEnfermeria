@@ -1,0 +1,5 @@
+{{- /* Impide publicar con datos sin confirmar: en producción, si perfil.pendientes no está vacío, el build falla. */ -}}
+{{- $pendientes := hugo.Data.perfil.pendientes -}}
+{{- if and $pendientes (not site.Params.permitirPendientes) -}}
+  {{- errorf "Hay datos pendientes de confirmar en data/perfil.yaml: %s. Confirmalos con Melina y sacalos de `pendientes`, o probá con HUGO_PARAMS_PERMITIRPENDIENTES=true." (delimit $pendientes ", ") -}}
+{{- end -}}

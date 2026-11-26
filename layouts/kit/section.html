@@ -1,0 +1,86 @@
+{{ define "main" }}
+{{- $p := hugo.Data.perfil -}}
+{{- $m := hugo.Data.mensajes -}}
+{{- $piezas := where site.RegularPages "Section" "piezas" -}}
+<main class="kit">
+  <header class="kit-intro">
+    <h1>Kit para publicar</h1>
+    <p>Hola {{ $p.nombreCorto }}: acá está todo listo para copiar y pegar. Tocá "Descargar" para guardar la imagen y "Copiar texto" para el texto de la publicación. Usá una variante distinta en cada grupo.</p>
+    {{- with $p.pendientes }}
+    <p class="aviso">Ojo: todavía hay datos sin confirmar (resaltados en amarillo). No publiques las piezas hasta corregirlos.</p>
+    {{- end }}
+    <nav class="kit-nav">
+      <a href="#piezas">Piezas</a>
+      <a href="#mensajes">Mensajes listos</a>
+      <a href="#google">Perfil de Google</a>
+      <a href="#grupos">Grupos de Facebook</a>
+    </nav>
+  </header>
+
+  <section id="piezas">
+    <h2>Piezas</h2>
+    {{- range sort $piezas "Params.orden" }}
+    {{- $slug := .File.ContentBaseName }}
+    {{- $png := printf "kit/%s.png" $slug }}
+    {{- $canal := cond (eq .Params.formato "estado") "estado" "facebook" }}
+    <article class="pieza-kit">
+      <h3>{{ .Title }}</h3>
+      {{- if fileExists (printf "static/%s" $png) }}
+      <img src="{{ $png | relURL }}" alt="Pieza: {{ .Title }}" loading="lazy">
+      <p class="descargas">
+        <a class="btn" href="{{ $png | relURL }}" download="melina-{{ $slug }}.png">Descargar imagen</a>
+        {{- $pdf := printf "kit/%s.pdf" $slug }}
+        {{- if fileExists (printf "static/%s" $pdf) }}
+        <a class="btn btn-light" href="{{ $pdf | relURL }}" download="melina-{{ $slug }}.pdf">Descargar PDF para imprimir</a>
+        {{- end }}
+      </p>
+      {{- else }}
+      <p class="aviso">Falta renderizar esta pieza: <code>pnpm piezas {{ $slug }}</code></p>
+      {{- end }}
+      {{- if eq .Params.formato "volante" }}
+      {{- range .Params.textos }}{{ partial "copiable.html" (dict "titulo" "Qué decir al dejar los volantes" "texto" .) }}{{ end }}
+      {{- else }}
+      {{- range $i, $t := .Params.textos }}
+      {{ partial "copiable.html" (dict "titulo" (printf "Texto %d" (add $i 1)) "texto" (partial "completar.html" (dict "texto" $t "canal" $canal))) }}
+      {{- end }}
+      {{- end }}
+    </article>
+    {{- end }}
+  </section>
+
+  <section id="mensajes">
+    <h2>Mensajes listos para WhatsApp</h2>
+    <p>Completá los ___ antes de mandarlos. Si algún día instalás WhatsApp Business, estos mismos textos se pueden guardar como respuestas rápidas.</p>
+    {{- range $m.listos }}
+    {{ partial "copiable.html" (dict "titulo" .titulo "texto" (partial "completar.html" (dict "texto" .texto))) }}
+    {{- end }}
+  </section>
+
+  <section id="google">
+    <h2>Perfil de Google</h2>
+    <p>{{ $m.google.intro }}</p>
+    {{- range $m.google.campos }}
+    <div class="campo">
+      {{- if .texto }}
+      {{ partial "copiable.html" (dict "titulo" .campo "texto" (partial "completar.html" (dict "texto" .texto))) }}
+      {{- else }}
+      <p class="copiable-titulo">{{ .campo }}</p>
+      {{- end }}
+      {{- with .nota }}<p class="nota">{{ . }}</p>{{ end }}
+    </div>
+    {{- end }}
+  </section>
+
+  <section id="grupos">
+    <h2>Grupos de Facebook</h2>
+    <ul class="consejos">
+      {{- range $m.grupos }}<li>{{ . }}</li>{{ end }}
+    </ul>
+  </section>
+</main>
+{{ end }}
+
+{{ define "scripts" }}
+{{- $js := resources.Get "js/kit.js" | js.Build (dict "minify" hugo.IsProduction) | fingerprint -}}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ end }}

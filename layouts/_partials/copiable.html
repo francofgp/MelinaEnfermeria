@@ -1,0 +1,6 @@
+{{- /* Bloque de texto con botón "Copiar". Uso: {{ partial "copiable.html" (dict "texto" $t "titulo" "Variante 1") }} */ -}}
+<div class="copiable">
+  {{- with .titulo }}<p class="copiable-titulo">{{ . }}</p>{{ end }}
+  <pre class="copiable-texto">{{ strings.TrimSpace .texto }}</pre>
+  <button type="button" class="btn btn-small" data-copiar>Copiar texto</button>
+</div>

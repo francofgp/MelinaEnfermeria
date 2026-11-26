@@ -1,0 +1,12 @@
+{{- partial "guarda-pendientes.html" . -}}
+<!doctype html>
+<html lang="es-AR">
+<head>
+  {{ partial "head.html" . }}
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  {{ block "main" . }}{{ end }}
+  {{ block "scripts" . }}{{ end }}
+</body>
+</html>

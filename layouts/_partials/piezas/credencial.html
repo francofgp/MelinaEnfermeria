@@ -1,0 +1,11 @@
+{{- /* Credencial de matrícula para las piezas: foto real, nombre, título y número. */ -}}
+{{- $p := hugo.Data.perfil -}}
+{{- $foto := (resources.Get "img/melina-retrato.jpg").Resize "600x webp" -}}
+<div class="credencial">
+  <img src="{{ $foto.RelPermalink }}" alt="">
+  <div>
+    <strong>{{ $p.nombreCompleto }}</strong>
+    <span>{{ $p.titulo }}</span>
+    <span>Matrícula provincial N.º {{ partial "pendiente.html" (dict "clave" "matricula" "texto" $p.matricula) }}</span>
+  </div>
+</div>

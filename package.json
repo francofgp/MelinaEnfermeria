@@ -1,0 +1,12 @@
+{
+  "name": "melina-enfermeria",
+  "private": true,
+  "type": "module",
+  "description": "Solo para renderizar las piezas a PNG/PDF; el sitio no usa Node.",
+  "scripts": {
+    "piezas": "node tools/render-piezas.mjs"
+  },
+  "devDependencies": {
+    "playwright-core": "1.65.1"
+  }
+}

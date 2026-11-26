@@ -1,0 +1,30 @@
+/* Variables de marca: las comparten la landing, las piezas y el kit.
+   La fuente (@font-face) se declara en layouts/_partials/head.html y en el layout de las piezas,
+   porque su URL depende del baseURL. Escalas de espacios y curvas: Open Props (--size-*, --ease-*). */
+:root {
+  --font: "Schibsted Grotesk", system-ui, sans-serif;
+  --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
+  --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+  --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
+  --step-head: clamp(2rem, 1.3rem + 3.2vw, 4rem);
+  --step-display: clamp(3.25rem, 1rem + 9vw, 10.5rem);
+
+  --bg: #f8f8f8;
+  --surface: #eeeeee;
+  --ink: #0a0a0a;
+  --accent: #1f6b3a;
+  --accent-deep: #14482a;
+  --accent-ink: #ffffff;
+  --mint: #c3edce;
+  --mint-2: #b2e4bf;
+  --pink: #f8c7c9;
+  --paper: #ffffff;
+  /* Tonos del acordeón "Cómo es una visita", de oscuro a claro */
+  --step-1: #14482a;
+  --step-2: #1f6b3a;
+  --step-3: #4f9a69;
+  --step-4: #9fd6b1;
+}
+
+/* Dato pendiente de confirmar con Melina (data/perfil.yaml → pendientes) */
+mark.pendiente { background: #fff1a6; color: var(--ink); padding: 0 0.2em; }

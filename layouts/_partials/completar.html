@@ -1,0 +1,9 @@
+{{- /* Completa {whatsapp}, {web} y {web-google} en un texto del kit.
+  Uso: {{ partial "completar.html" (dict "texto" .texto "canal" "facebook") }} */ -}}
+{{- $p := hugo.Data.perfil -}}
+{{- $base := site.Params.urlPublica -}}
+{{- $t := .texto -}}
+{{- $t = replace $t "{whatsapp}" $p.whatsapp.visible -}}
+{{- $t = replace $t "{web-google}" (printf "%s?desde=google" $base) -}}
+{{- $t = replace $t "{web}" (printf "%s?desde=%s" $base (.canal | default "facebook")) -}}
+{{- return $t -}}
